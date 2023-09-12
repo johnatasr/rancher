@@ -2,10 +2,12 @@ name: Check GA release
 
 on:
   workflow_dispatch:
-  pull_request:
+  release:
+    types:
+      - created
   push:
     tags:
-      - 'Tv2.[0-9]+.[0-9]+'
+      - 'v2.[0-9]+.[0-9]+'
 
 jobs:
   check-changes:
