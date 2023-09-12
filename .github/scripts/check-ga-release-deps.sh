@@ -1,7 +1,7 @@
 #!/bin/sh
 set -ue
  
-release_title=$(echo "${{ github.event.release.name }}" | tr '[:upper:]' '[:lower:]')
+release_title=$(echo "$RELEASE_TITLE" | tr '[:upper:]' '[:lower:]')
 badfiles="false"
 
 if echo "$release_title" | grep -Eq '^(release v([0-9]{1,2}|100)\.[0-9]{1,100}\.[0-9]{1,100}|v([0-9]{1,2}|100)\.[0-9]{1,100}\.[0-9]{1,100})$'; then

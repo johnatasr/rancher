@@ -9,6 +9,9 @@ on:
     tags:
       - 'v2.[0-9]+.[0-9]+'
 
+env:
+  RELEASE_TITLE: ${{ github.event.release.name }}
+
 jobs:
   check-changes:
     runs-on: ubuntu-latest
