@@ -2,9 +2,9 @@ name: Final release actions
 
 on:
   workflow_dispatch:
-  pull_request:
   release:
     types: [prereleased]
+  pull_request:
   
 env:
   RELEASE_TITLE: ${{ github.event.release.name || '' }}
