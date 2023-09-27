@@ -1,9 +1,9 @@
 name: Check final release
 
 on:
-  pull_request:
   release:
     types: [prereleased]
+  pull_request:
 
 env:
   LAST_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
