@@ -9,12 +9,13 @@ FILE_PATHS="
     ./pkg/settings/setting.go 
     ./scripts/package-env
 "
-LAST_COMMIT_MESSAGE=$(echo "$LAST_COMMIT_MESSAGE" | tr '[:upper:]' '[:lower:]')
-DEFAULT_LAST_COMMIT_MESSAGE="last commit for final rc"
+
+HEAD_COMMIT_MESSAGE=$(git show -s --format=%s | tr '[:upper:]' '[:lower:]')
+PARTIAL_FINAL_RC_COMMIT_MESSAGE="last commit for final rc"
 RELEASE_TITLE=$(echo "$RELEASE_TITLE")
 BAD_FILES=false
 
-if echo "$LAST_COMMIT_MESSAGE" | grep -q "$DEFAULT_LAST_COMMIT_MESSAGE" || echo "$RELEASE_TITLE" | grep -Eq '^Pre-release v2\.7\.[0-9]{1,100}-rc[1-9][0-9]{0,1}$'; then
+if echo "$HEAD_COMMIT_MESSAGE" | grep -q "$PARTIAL_FINAL_RC_COMMIT_MESSAGE" || echo "$RELEASE_TITLE" | grep -Eq '^Pre-release v2\.7\.[0-9]{1,100}-rc[1-9][0-9]{0,1}$'; then
 
     echo "Starting check..."
 
@@ -31,7 +32,7 @@ if echo "$LAST_COMMIT_MESSAGE" | grep -q "$DEFAULT_LAST_COMMIT_MESSAGE" || echo 
     done
 
     if [ "${BAD_FILES}" = true ]; then
-        echo "Check failed, some files don't match the expected dependencies for a GA release"
+        echo "Check failed, some files don't match the expected dependencies for a final release candidate"
         exit 1
     fi
 

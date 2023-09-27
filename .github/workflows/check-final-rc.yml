@@ -1,4 +1,4 @@
-name: Check final release
+name: Final release actions
 
 on:
   workflow_dispatch:
@@ -7,11 +7,10 @@ on:
     types: [prereleased]
   
 env:
-  LAST_COMMIT_MESSAGE: ${{ github.event.head_commit.message || '' }}
   RELEASE_TITLE: ${{ github.event.release.name || '' }}
   
 jobs:
-  check-changes:
+  check-deps-and-tags:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,6 +18,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          ref: ${{ env.GITHUB_SHA }}
       -
-        name: Verify dependencies files in a GA release
+        name: Verify dependencies files in a final release candi
         run: ./.github/scripts/check-final-rc-deps.sh
