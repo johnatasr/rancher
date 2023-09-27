@@ -1,7 +1,6 @@
 name: Check final release
 
 on:
-  workflow_dispatch:
   pull_request:
   release:
     types: [prereleased]
@@ -21,4 +20,4 @@ jobs:
           fetch-depth: 0
       -
         name: Verify dependencies files in a GA release
-        run: ./.github/scripts/check-ga-release-deps.sh
+        run: ./.github/scripts/check-final-rc-deps.sh

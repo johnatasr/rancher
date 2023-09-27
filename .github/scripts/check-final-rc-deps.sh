@@ -9,11 +9,12 @@ FILE_PATHS="
     ./pkg/settings/setting.go 
     ./scripts/package-env
 "
-LAST_COMMIT_MESSAGE=$(echo "$LAST_COMMIT_MESSAGE" | tr '[:upper:]' '[:lower:]')
-RELEASE_TITLE=$(echo "$RELEASE_TITLE" | tr '[:upper:]' '[:lower:]')
+
 DEFAULT_LAST_COMMIT_MESSAGE="last commit for final rc"
-COUNT_FILES=$(echo "$FILE_PATHS" | grep -c "$")   
-BAD_FILES=false
+COUNT_FILES=$(echo "$FILE_PATHS" | grep -c "$")  
+
+echo "release: $RELEASE_TITLE"
+echo "commit: $LAST_COMMIT_MESSAGE"
 
 if echo "$RELEASE_TITLE" | grep -Eq '^Pre-release v2\.7\.[0-9]{1,100}-rc[1-9][0-9]{0,1}$' || echo "$LAST_COMMIT_MESSAGE" | grep -q "$DEFAULT_LAST_COMMIT_MESSAGE"; then
 
