@@ -5,10 +5,10 @@ on:
   pull_request:
   release:
     types: [prereleased]
-
+  
 env:
-  LAST_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-  RELEASE_TITLE: ${{ github.event.release.name }}
+  LAST_COMMIT_MESSAGE: ${{ github.event.head_commit.message || '' }}
+  RELEASE_TITLE: ${{ github.event.release.name || '' }}
   
 jobs:
   check-changes:
@@ -21,4 +21,4 @@ jobs:
           fetch-depth: 0
       -
         name: Verify dependencies files in a GA release
-        run: ./.github/scripts/check-ga-release-deps.sh
+        run: ./.github/scripts/check-final-rc-deps.sh
