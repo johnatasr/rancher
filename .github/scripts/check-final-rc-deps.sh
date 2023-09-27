@@ -9,13 +9,16 @@ FILE_PATHS="
     ./pkg/settings/setting.go 
     ./scripts/package-env
 "
+LAST_COMMIT_MESSAGE=$(echo "$LAST_COMMIT_MESSAGE" | tr '[:upper:]' '[:lower:]')
 RELEASE_TITLE=$(echo "$RELEASE_TITLE" | tr '[:upper:]' '[:lower:]')
-COUNT_FILES=$(echo "$FILE_PATHS" | grep -c "$")
+DEFAULT_LAST_COMMIT_MESSAGE="last commit for final rc"
+COUNT_FILES=$(echo "$FILE_PATHS" | grep -c "$")   
 BAD_FILES=false
 
-echo "Starting check, $COUNT_FILES files detected..."
+if echo "$RELEASE_TITLE" | grep -Eq '^Pre-release v2\.7\.[0-9]{1,100}-rc[1-9][0-9]{0,1}$' || echo "$LAST_COMMIT_MESSAGE" | grep -q "$DEFAULT_LAST_COMMIT_MESSAGE"; then
 
-if echo "$RELEASE_TITLE" | grep -Eq '^(release v([0-9]{1,2}|100)\.[0-9]{1,100}\.[0-9]{1,100}|v([0-9]{1,2}|100)\.[0-9]{1,100}\.[0-9]{1,100})$'; then
+    echo "Starting check, $COUNT_FILES files detected..."
+
     for FILE in $FILE_PATHS; do
         if grep -q -E '\-rc[0-9]+' "$FILE"; then
             BAD_FILES=true
