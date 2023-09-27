@@ -10,10 +10,12 @@ FILE_PATHS="
     ./scripts/package-env
 "
 
-HEAD_COMMIT_MESSAGE=$(git show -s --format=%s | tr '[:upper:]' '[:lower:]')
+HEAD_COMMIT_MESSAGE=$(git log -2 --pretty=format:"%s")
 PARTIAL_FINAL_RC_COMMIT_MESSAGE="last commit for final rc"
 RELEASE_TITLE=$(echo "$RELEASE_TITLE")
 BAD_FILES=false
+
+echo "Commit: $HEAD_COMMIT_MESSAGE"
 
 if echo "$HEAD_COMMIT_MESSAGE" | grep -q "$PARTIAL_FINAL_RC_COMMIT_MESSAGE" || echo "$RELEASE_TITLE" | grep -Eq '^Pre-release v2\.7\.[0-9]{1,100}-rc[1-9][0-9]{0,1}$'; then
 
