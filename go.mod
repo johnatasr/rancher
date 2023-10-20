@@ -192,7 +192,7 @@ require (
 	github.com/miekg/pkcs11 v1.1.1 // indirect
 	github.com/mistifyio/go-zfs/v3 v3.0.0 // indirect
 	github.com/oklog/ulid v1.3.1 // indirect
-	github.com/opencontainers/runtime-spec v1.1.0-rc.1 // indirect
+	github.com/opencontainers/runtime-spec v1.1.0.1 // indirect
 	github.com/opencontainers/selinux v1.11.0 // indirect
 	github.com/ostreedev/ostree-go v0.0.0-20210805093236-719684c64e4f // indirect
 	github.com/proglottis/gpgme v0.1.3 // indirect
@@ -331,7 +331,7 @@ require (
 	github.com/mxk/go-flowrate v0.0.0-20140419014527-cca7078d478f // indirect
 	github.com/onsi/gomega v1.27.10 // indirect
 	github.com/opencontainers/go-digest v1.0.0 // indirect
-	github.com/opencontainers/image-spec v1.1.0-rc2 // indirect
+	github.com/opencontainers/image-spec v1.1.0 // indirect
 	github.com/opencontainers/runc v1.1.6 // indirect
 	github.com/peterbourgon/diskv v2.0.1+incompatible // indirect
 	github.com/pkg/sftp v1.13.5
